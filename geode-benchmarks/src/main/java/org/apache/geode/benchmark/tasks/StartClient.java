@@ -50,6 +50,7 @@ public class StartClient implements Task {
         .addPoolLocator(locator.getHostAddress(), locatorPort)
         .setPoolIdleTimeout(-1)
         .set(ConfigurationProperties.STATISTIC_ARCHIVE_FILE, statsFile)
+        .setPoolThreadLocalConnections(true)
         .create();
 
     context.setAttribute("CLIENT_CACHE", clientCache);
