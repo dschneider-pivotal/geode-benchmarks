@@ -53,7 +53,7 @@ public class StartServer implements Task {
         .set(ConfigurationProperties.STATISTIC_ARCHIVE_FILE, statsFile)
         .create();
     CacheServer cacheServer = cache.addCacheServer();
-    cacheServer.setMaxConnections(4096);
+    cacheServer.setMaxConnections(8092);
     cacheServer.setPort(0);
     cacheServer.start();
     context.setAttribute("SERVER_CACHE", cache);
