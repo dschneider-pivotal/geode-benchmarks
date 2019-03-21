@@ -59,7 +59,7 @@ public class PrePopulateRegion implements Task {
   @Override
   public void run(TestContext context) throws InterruptedException {
     Cache serverCache = (Cache) context.getAttribute("SERVER_CACHE");
-    Region<Long, Portfolio> region = serverCache.getRegion("region");
+    Region<Long, Object> region = serverCache.getRegion("region");
     int numLocators = context.getHostsIDsForRole(LOCATOR).size();
     int numServers = context.getHostsIDsForRole(SERVER).size();
     int jvmID = context.getJvmID();
@@ -68,7 +68,7 @@ public class PrePopulateRegion implements Task {
 
   }
 
-  void run(Map<Long, Portfolio> region, int numLocators, int numServers, int jvmID)
+  void run(Map<Long, Object> region, int numLocators, int numServers, int jvmID)
       throws InterruptedException {
     int serverIndex = jvmID - numLocators;
     long numPutsPerServer = this.keyRangeToPrepopulate / numServers;
@@ -122,12 +122,13 @@ public class PrePopulateRegion implements Task {
     threadPool.awaitTermination(5, TimeUnit.MINUTES);
   }
 
-  private void doPuts(Map<Long, Portfolio> region, long lowBound, long highBound) {
-    Map<Long, Portfolio> valueMap = new HashMap<>();
+  private void doPuts(Map<Long, Object> region, long lowBound, long highBound) {
+    Map<Long, Object> valueMap = new HashMap<>();
     for (long putIndex = lowBound; putIndex < highBound; putIndex++) {
       // build a map of to put to the server
 
-      valueMap.put(putIndex, new Portfolio(putIndex));
+      //valueMap.put(putIndex, new Portfolio(putIndex));
+      valueMap.put(putIndex, new byte[875]);
 
       if (putIndex % getBatchSize() == 0) {
         region.putAll(valueMap);
