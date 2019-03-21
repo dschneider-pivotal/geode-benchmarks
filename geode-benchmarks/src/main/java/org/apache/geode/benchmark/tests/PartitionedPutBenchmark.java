@@ -36,7 +36,7 @@ import org.apache.geode.perftest.TestRunners;
  */
 public class PartitionedPutBenchmark implements PerformanceTest {
 
-  private long keyRange = 1000000;
+  private long keyRange = 10; // 00000;
 
   public PartitionedPutBenchmark() {}
 
