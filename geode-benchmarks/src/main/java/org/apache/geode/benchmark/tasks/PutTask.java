@@ -46,13 +46,13 @@ public class PutTask extends BenchmarkDriverAdapter implements Serializable {
     region = cache.getRegion("region");
   }
 
-  //private final static byte[] value = new byte[875];
+  private final static byte[] value = new byte[875];
   
   @Override
   public boolean test(Map<Object, Object> ctx) throws Exception {
     long key = ThreadLocalRandom.current().nextLong(0, this.keyRange);
-    region.put(key, new Portfolio(key));
-    //region.put(key, value);
+    //region.put(key, new Portfolio(key));
+    region.put(key, value);
     return true;
   }
 }
