@@ -34,7 +34,7 @@ public class GeodeBenchmark {
   /**
    * Number of threads to run benchmark.
    */
-  private static final int THREADS = 128; // Runtime.getRuntime().availableProcessors() * 16;
+  private static final int THREADS = 256; // Runtime.getRuntime().availableProcessors() * 16;
 
 
   public static TestConfig createConfig() {
