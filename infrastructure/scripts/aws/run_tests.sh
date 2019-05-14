@@ -156,8 +156,9 @@ if [[ -z "${VERSION}" ]]; then
   fi
 
   ssh ${SSH_OPTIONS} geode@$FIRST_INSTANCE "\
-    [ ! -d geode ] && git clone ${REPO}; \
-    cd geode && git fetch --all && git checkout ${BRANCH} && git pull"
+    rm -rf geode && \
+    git clone ${REPO} && \
+    cd geode && git checkout ${BRANCH}"
 
   set +e
   for i in {1..5}; do
@@ -199,9 +200,10 @@ set -e
 instance_id=$(ssh ${SSH_OPTIONS} geode@$FIRST_INSTANCE cat .geode-benchmarks-identifier)
 
 
-ssh ${SSH_OPTIONS} geode@${FIRST_INSTANCE} "\
-  [ ! -d geode-benchmarks ] && git clone ${BENCHMARK_REPO}; \
-  cd geode-benchmarks && git fetch --all && git checkout ${BENCHMARK_BRANCH} && git pull"
+ssh ${SSH_OPTIONS} geode@${FIRST_INSTANCE} \
+  rm -rf geode-benchmarks '&&' \
+  git clone ${BENCHMARK_REPO} '&&' \
+  cd geode-benchmarks '&&' git checkout ${BENCHMARK_BRANCH}
 
 BENCHMARK_SHA=$(ssh ${SSH_OPTIONS} geode@${FIRST_INSTANCE} \
   cd geode-benchmarks '&&' \
