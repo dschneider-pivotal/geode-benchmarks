@@ -127,8 +127,8 @@ public class PrePopulateRegion implements Task {
     for (long putIndex = lowBound; putIndex < highBound; putIndex++) {
       // build a map of to put to the server
 
-      //valueMap.put(putIndex, new Portfolio(putIndex));
-      valueMap.put(putIndex, new byte[875]);
+      valueMap.put(putIndex, new Portfolio(putIndex));
+      //valueMap.put(putIndex, new byte[875]);
 
       if (putIndex % getBatchSize() == 0) {
         region.putAll(valueMap);
