@@ -122,12 +122,15 @@ public class PrePopulateRegion implements Task {
     threadPool.awaitTermination(5, TimeUnit.MINUTES);
   }
 
+  private static final Object valueObject = new Long(1);
+
   private void doPuts(Map<Long, Object> region, long lowBound, long highBound) {
     Map<Long, Object> valueMap = new HashMap<>();
     for (long putIndex = lowBound; putIndex < highBound; putIndex++) {
       // build a map of to put to the server
 
-      valueMap.put(putIndex, new Portfolio(putIndex));
+      valueMap.put(putIndex, valueObject);
+      //valueMap.put(putIndex, new Portfolio(putIndex));
       //valueMap.put(putIndex, new byte[875]);
 
       if (putIndex % getBatchSize() == 0) {
