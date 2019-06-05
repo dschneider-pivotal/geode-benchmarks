@@ -51,7 +51,6 @@ public class StartServer implements Task {
         .set(ConfigurationProperties.NAME,
             "server-" + context.getJvmID() + "-" + InetAddress.getLocalHost())
         .set(ConfigurationProperties.STATISTIC_ARCHIVE_FILE, statsFile)
-        .set(ConfigurationProperties.OFF_HEAP_MEMORY_SIZE, "2g")
         .create();
     CacheServer cacheServer = cache.addCacheServer();
     cacheServer.setMaxConnections(8092);
