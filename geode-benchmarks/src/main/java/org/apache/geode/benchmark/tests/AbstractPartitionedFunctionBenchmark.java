@@ -39,7 +39,7 @@ abstract class AbstractPartitionedFunctionBenchmark implements PerformanceTest {
   @Override
   public TestConfig configure() {
     TestConfig config = GeodeBenchmark.createConfig();
-    config.threads(Runtime.getRuntime().availableProcessors() * 4);
+    //config.threads(Runtime.getRuntime().availableProcessors() * 4);
     ClientServerTopology.configure(config);
     config.before(new CreatePartitionedRegion(), SERVER);
     config.before(new CreateClientProxyRegion(), CLIENT);
