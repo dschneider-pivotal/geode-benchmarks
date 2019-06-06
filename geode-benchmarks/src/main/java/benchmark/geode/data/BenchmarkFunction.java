@@ -35,12 +35,13 @@ public class BenchmarkFunction implements Function {
   public void execute(FunctionContext context) {
     RegionFunctionContext regionFunctionContext = (RegionFunctionContext) context;
     Region region = regionFunctionContext.getDataSet();
-    List<Long> results = new ArrayList<>();
+    //List<Long> results = new ArrayList<>();
+    long results = 0;
 
     for (long i = minKey; i <= maxKey; i++) {
       Portfolio portfolio = (Portfolio) region.get(i);
       if (portfolio != null) {
-        results.add(portfolio.getID());
+        results += portfolio.getID();
       }
     }
 
